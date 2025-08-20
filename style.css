@@ -1,0 +1,471 @@
+/* ==========================
+   RESET
+========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================
+   BODY + GLOBAL BACKGROUND
+========================== */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(
+    135deg,
+    #fbe8c4 0%,   /* beige */
+    #f9a825 45%,  /* orange */
+    #e53935 100%  /* festive red */
+  );
+  background-attachment: fixed;
+  background-size: cover;
+  color: #3a2c2c;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* 🔹 Logo watermark in background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("assets/logo.jpg") no-repeat center;
+  background-size: 350px;
+  opacity: 0.06;  /* faint watermark */
+  pointer-events: none;
+  z-index: 0;
+}
+
+section, header, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+header {
+  background: #fff;
+  padding: 15px 30px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #3a2c2c;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #f9a825;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #3a2c2c;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* ==========================
+   HERO SLIDER
+========================== */
+.hero {
+  position: relative;
+  height: 68vh;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* ==========================
+   FEATURED PRODUCTS
+========================== */
+.featured-products {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.featured-products h2 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #b83227;
+  font-family: Georgia, serif;
+}
+
+.products-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-top: 5px solid #f9a825;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-card h3 {
+  margin: 15px 0 5px;
+  color: #2e7d32;
+}
+
+.product-card p {
+  color: #666;
+}
+
+/* ==========================
+   RED FEATURES PANEL
+========================== */
+.features {
+  background: #b83227;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  text-align: center;
+  max-width: 200px;
+}
+
+.feature-item img {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+/* ==========================
+   CATEGORIES
+========================== */
+.categories {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.categories h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #2e7d32;
+  font-family: Georgia, serif;
+}
+
+.category-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  display: block;
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  text-decoration: none;
+  color: #3a2c2c;
+  width: 280px;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-left: 5px solid #f9a825;
+}
+
+.category-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  border-left-color: #2e7d32;
+}
+
+/* ==========================
+   LEGACY SECTION
+========================== */
+.legacy-section {
+  background: #800000; /* Maroon Shade */
+  color: #fff;
+  padding: 60px 20px;
+  margin: 40px auto;
+  border-radius: 16px;
+  max-width: 1200px;
+}
+
+.legacy-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+}
+
+.legacy-image {
+  flex: 1 1 40%;
+}
+
+.legacy-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.legacy-content {
+  flex: 1 1 55%;
+}
+
+.legacy-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ffd700; /* Gold Highlight */
+}
+
+.legacy-content p {
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* ==========================
+   ABOUT (Now Maroon Theme)
+========================== */
+.about {
+  padding: 60px 20px;
+  background: #800000;   /* Maroon Red */
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 1200px;
+  color: #fff;           /* White text */
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about img {
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* darker shadow */
+}
+
+.about-text {
+  max-width: 600px;
+}
+
+.about-text h2 {
+  color: #ffd700;        /* Gold */
+  font-family: Georgia, serif;
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  color: #fff;           /* White text */
+  line-height: 1.7;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+  background: #3a2c2c;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: #f9a825;
+  text-decoration: none;
+  transition: 0.3s;
+}
+footer a:hover {
+  color: #2e7d32;
+}
+
+/* ==========================
+   CATEGORY BANNERS
+========================== */
+.category-banner {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.category-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+.category-banner .banner-text {
+  position: absolute;
+  color: #fff;
+  text-align: center;
+}
+
+.category-banner h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-family: Georgia, serif;
+}
+
+.category-banner p {
+  font-size: 1.2rem;
+}
+
+/* ==========================
+   CONTACT PAGE
+========================== */
+.contact {
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #b83227;
+  font-family: Georgia, serif;
+}
+
+.contact p {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.contact-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  background: #e53935;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #b83227;
+}
+
+/* ==========================
+   MAP SECTION
+========================== */
+.map {
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.map h2 {
+  text-align: center;
+  padding: 15px;
+  background: #800000;
+  color: #ffd700;

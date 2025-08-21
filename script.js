@@ -21,11 +21,39 @@ function loadComponent(id, file, callback) {
 // ==========================
 window.addEventListener("load", () => {
   // Load header and footer
-  loadComponent("header", "components/header.html");
+  loadComponent("header", "components/header.html", initHeader);
   loadComponent("footer", "components/footer.html");
   // ❌ Slider disabled for now (client wants only 1 banner)
   // loadComponent("header", "components/header.html", initSlider);
 });
+
+// ==========================
+// Header (Hamburger + Dropdown)
+// ==========================
+function initHeader() {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const dropdownToggle = document.querySelector(".dropdown-toggle");
+
+  if (menuToggle && navLinks) {
+    // Toggle main nav on mobile
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+      menuToggle.textContent = navLinks.classList.contains("show") ? "✖" : "☰";
+    });
+  }
+
+  if (dropdownToggle) {
+    // Toggle dropdown on mobile only
+    dropdownToggle.addEventListener("click", (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const dropdownMenu = dropdownToggle.nextElementSibling;
+        dropdownMenu.classList.toggle("show");
+      }
+    });
+  }
+}
 
 // ==========================
 // HERO SLIDER FUNCTION (currently disabled)

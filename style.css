@@ -44,7 +44,7 @@ section, header, footer {
 
 /* ==========================
    NAVBAR
-========================= */
+========================== */
 header {
   background: #fff;
   padding: 15px 30px;
@@ -71,23 +71,26 @@ header {
   display: flex;
   gap: 25px;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
   text-decoration: none;
   font-weight: bold;
   color: #3a2c2c;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 .nav-links li a:hover {
   color: #f9a825;
 }
 
-/* Dropdown */
+/* Dropdown (desktop) */
 .dropdown {
   position: relative;
 }
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -96,14 +99,80 @@ header {
   list-style: none;
   background: #fff;
   border: 1px solid #ddd;
+  min-width: 160px;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.15);
 }
+
 .dropdown-menu li a {
   display: block;
   padding: 10px 20px;
   color: #3a2c2c;
+  font-weight: normal;
 }
+
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+/* ==========================
+   HAMBURGER MENU
+========================== */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3a2c2c;
+}
+
+/* ==========================
+   RESPONSIVE (Mobile)
+========================== */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* show hamburger */
+  }
+
+  .nav-links {
+    display: none; /* hidden by default */
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 75px;
+    right: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.15);
+    width: 200px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-links.show {
+    display: flex; /* visible when toggled */
+  }
+
+  /* Mobile dropdown */
+  .dropdown-menu {
+    display: none;
+    position: static;
+    border: none;
+    box-shadow: none;
+    background: none;
+    flex-direction: column;
+    margin-top: 5px;
+  }
+
+  .dropdown-menu li a {
+    padding: 8px 15px;
+  }
+
+  .dropdown-menu.show {
+    display: flex; /* shown on toggle */
+  }
 }
 
 /* ==========================

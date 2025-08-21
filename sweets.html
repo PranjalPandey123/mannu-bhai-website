@@ -11,9 +11,15 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-            <img src="assets/logo-2.jpg" alt="Mannu Bhai Logo">
+            <a href="index.html">
+                <img src="assets/logo-2.jpg" alt="Mannu Bhai Logo">
+            </a>
         </div>
-        <ul class="nav-links">
+
+        <!-- Hamburger Button -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li class="dropdown">
                 <a href="#">Products ▾</a>
@@ -75,5 +81,12 @@
 <footer>
     <p>© 2025 Mannu Bhai Namkeens. All Rights Reserved.</p>
 </footer>
+
+<!-- JS for Hamburger -->
+<script>
+    function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("show");
+    }
+</script>
 </body>
 </html>

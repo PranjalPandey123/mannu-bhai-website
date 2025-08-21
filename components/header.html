@@ -38,19 +38,23 @@
     const navLinks = document.getElementById("nav-links");
     const dropdownToggle = document.querySelector(".dropdown-toggle");
 
-    // Toggle main nav on mobile
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-      menuToggle.textContent = navLinks.classList.contains("show") ? "✖" : "☰";
-    });
+    // 🔹 Toggle main nav on mobile
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+        menuToggle.textContent = navLinks.classList.contains("show") ? "✖" : "☰";
+      });
+    }
 
-    // Toggle dropdown on mobile
-    dropdownToggle.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault(); // prevent link jump
-        const dropdownMenu = dropdownToggle.nextElementSibling;
-        dropdownMenu.classList.toggle("show");
-      }
-    });
+    // 🔹 Toggle dropdown on mobile
+    if (dropdownToggle) {
+      dropdownToggle.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault(); // prevent page jump
+          const dropdownMenu = dropdownToggle.nextElementSibling;
+          dropdownMenu.classList.toggle("show");
+        }
+      });
+    }
   });
 </script>

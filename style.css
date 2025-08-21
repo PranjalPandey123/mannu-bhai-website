@@ -1,6 +1,6 @@
 /* ==========================
    RESET
-========================== */
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -9,14 +9,14 @@
 
 /* ==========================
    BODY + GLOBAL BACKGROUND
-========================== */
+========================= */
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(
     135deg,
-    #fbe8c4 0%,   /* beige */
-    #f9a825 45%,  /* orange */
-    #e53935 100%  /* festive red */
+    #fbe8c4 0%,
+    #f9a825 45%,
+    #e53935 100%
   );
   background-attachment: fixed;
   background-size: cover;
@@ -32,7 +32,7 @@ body::before {
   top: 0; left: 0; right: 0; bottom: 0;
   background: url("assets/logo.jpg") no-repeat center;
   background-size: 350px;
-  opacity: 0.06;  /* faint watermark */
+  opacity: 0.06;
   pointer-events: none;
   z-index: 0;
 }
@@ -44,7 +44,7 @@ section, header, footer {
 
 /* ==========================
    NAVBAR
-========================== */
+========================= */
 header {
   background: #fff;
   padding: 15px 30px;
@@ -58,16 +58,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo img {
   height: 60px;
+  max-width: 100%;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 25px;
+  flex-wrap: wrap;
 }
 
 .nav-links li a {
@@ -105,7 +108,7 @@ header {
 
 /* ==========================
    HERO SLIDER
-========================== */
+========================= */
 .hero {
   position: relative;
   height: 68vh;
@@ -130,64 +133,110 @@ header {
   z-index: 1;
 }
 
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(0,0,0,0.3);
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
 /* ==========================
-   FEATURED PRODUCTS
-========================== */
-.featured-products {
-  text-align: center;
-  padding: 60px 20px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 16px;
-  margin: 40px auto;
-  max-width: 1200px;
-}
-
-.featured-products h2 {
-  font-size: 2.2rem;
-  margin-bottom: 40px;
-  color: #b83227;
-  font-family: Georgia, serif;
-}
-
-.products-grid {
+   CATEGORY BANNER
+========================= */
+.category-banner {
+  position: relative;
+  height: 60vh;
   display: flex;
   justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.product-card {
-  background: #fff;
-  border-radius: 15px;
-  padding: 20px;
-  width: 250px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  border-top: 5px solid #f9a825;
-}
-
-.product-card img {
-  width: 100%;
+  align-items: center;
+  margin: 0 auto 20px;
+  max-width: 1200px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.category-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  display: block;
 }
 
-.product-card h3 {
-  margin: 15px 0 5px;
-  color: #2e7d32;
-}
+/* ==========================
+ /* ==========================
+    FEATURED PRODUCTS
+ ========================== */
+ .featured-products {
+   text-align: center;
+   padding: 60px 20px;
+   background: rgba(255,255,255,0.9);
+   border-radius: 16px;
+   margin: 40px auto;
+   max-width: 1200px;
+ }
 
-.product-card p {
-  color: #666;
-}
+ .featured-products h2 {
+   font-size: 2.2rem;
+   margin-bottom: 40px;
+   color: #b83227;
+   font-family: Georgia, serif;
+ }
+
+ .products-grid {
+   display: flex;
+   justify-content: center;
+   gap: 40px;
+   flex-wrap: wrap;
+ }
+
+ .product-card {
+   background: #fff;
+   border-radius: 15px;
+   padding: 20px;
+   width: 250px;
+   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+   transition: transform 0.3s, box-shadow 0.3s;
+   border-top: 5px solid #f9a825;
+ }
+
+ .product-card img {
+   width: 100%;
+   border-radius: 10px;
+ }
+
+ .product-card:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+ }
+
+ .product-card h3 {
+   margin: 15px 0 5px;
+   color: #2e7d32;
+ }
+
+ .product-card p {
+   color: #666;
+ }
 
 /* ==========================
    RED FEATURES PANEL
-========================== */
+========================= */
 .features {
   background: #b83227;
   color: #fff;
@@ -209,7 +258,7 @@ header {
 
 /* ==========================
    CATEGORIES
-========================== */
+========================= */
 .categories {
   text-align: center;
   padding: 60px 20px;
@@ -240,7 +289,8 @@ header {
   padding: 15px;
   text-decoration: none;
   color: #3a2c2c;
-  width: 280px;
+  flex: 1 1 280px;
+  max-width: 320px;
   transition: 0.3s;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border-left: 5px solid #f9a825;
@@ -248,6 +298,9 @@ header {
 
 .category-card img {
   width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -258,9 +311,9 @@ header {
 
 /* ==========================
    LEGACY SECTION
-========================== */
+========================= */
 .legacy-section {
-  background: #800000; /* Maroon Shade */
+  background: #800000;
   color: #fff;
   padding: 60px 20px;
   margin: 40px auto;
@@ -281,6 +334,7 @@ header {
 
 .legacy-image img {
   width: 100%;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
@@ -292,7 +346,7 @@ header {
 .legacy-content h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #ffd700; /* Gold Highlight */
+  color: #ffd700;
 }
 
 .legacy-content p {
@@ -302,15 +356,71 @@ header {
 }
 
 /* ==========================
-   ABOUT (Now Maroon Theme)
-========================== */
+  /* ==========================
+     CERTIFICATIONS SECTION
+  ========================= */
+  .certifications {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 16px;
+    margin: 60px auto;
+    max-width: 1200px;
+  }
+
+  .certifications h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #b83227;
+    font-family: Georgia, serif;
+  }
+
+  .certifications-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .cert-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px; /* exactly same as product-card */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 5px solid #f9a825;
+  }
+
+  .cert-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .cert-card h4 {
+    margin: 15px 0 5px;
+    color: #2e7d32;
+  }
+
+  .cert-card p {
+    color: #666;
+  }
+
+/* ==========================
+   ABOUT SECTION
+========================= */
 .about {
   padding: 60px 20px;
-  background: #800000;   /* Maroon Red */
+  background: #800000;
   border-radius: 16px;
   margin: 40px auto;
   max-width: 1200px;
-  color: #fff;           /* White text */
+  color: #fff;
 }
 
 .about-content {
@@ -322,8 +432,10 @@ header {
 
 .about img {
   width: 350px;
+  max-width: 100%;
+  height: auto;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* darker shadow */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .about-text {
@@ -331,7 +443,7 @@ header {
 }
 
 .about-text h2 {
-  color: #ffd700;        /* Gold */
+  color: #ffd700;
   font-family: Georgia, serif;
   margin-bottom: 15px;
   font-size: 2rem;
@@ -339,13 +451,95 @@ header {
 
 .about-text p {
   font-size: 1.1rem;
-  color: #fff;           /* White text */
+  color: #fff;
   line-height: 1.7;
 }
 
 /* ==========================
+   FOLLOW US SECTION
+========================= */
+.follow-us {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.follow-us h2 {
+  font-size: 1.8rem;
+  color: #b83227;
+  margin-bottom: 20px;
+  font-family: Georgia, serif;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+/* ==========================
+   CONTACT SECTION
+========================= */
+.contact {
+  background: rgba(255,255,255,0.95);
+  padding: 60px 20px;
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 800px;
+  color: #3a2c2c;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #b83227;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact input,
+.contact textarea {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact button {
+  background: #f9a825;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact button:hover {
+  background: #e08900;
+}
+
+/* ==========================
    FOOTER
-========================== */
+========================= */
 footer {
   background: #3a2c2c;
   color: #fff;
@@ -359,113 +553,86 @@ footer a {
   text-decoration: none;
   transition: 0.3s;
 }
+
 footer a:hover {
   color: #2e7d32;
 }
 
 /* ==========================
-   CATEGORY BANNERS
-========================== */
-.category-banner {
-  position: relative;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+   MOBILE RESPONSIVE
+========================= */
+@media screen and (max-width: 1024px) {
+  .featured-products, .categories, .legacy-section, .about, .certifications, .contact {
+    padding: 40px 15px;
+  }
+
+  .products-grid, .category-cards, .legacy-container, .about-content, .features, .certifications-container {
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .category-banner {
+    height: 35vh;
+  }
 }
 
-.category-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(70%);
+@media screen and (max-width: 768px) {
+  .feature-item {
+    max-width: 150px;
+    margin: 10px auto;
+  }
+
+  .hero {
+    height: 40vh;
+  }
+
+  .about img {
+    width: 100%;
+  }
+
+  .category-banner {
+    height: 30vh;
+  }
 }
 
-.category-banner .banner-text {
-  position: absolute;
-  color: #fff;
-  text-align: center;
-}
+@media screen and (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.category-banner h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  font-family: Georgia, serif;
-}
+  .logo img {
+    height: 40px;
+  }
 
-.category-banner p {
-  font-size: 1.2rem;
-}
+  .featured-products h2,
+  .categories h2,
+  .legacy-content h2,
+  .about-text h2,
+  .certifications h2,
+  .contact h2 {
+    font-size: 1.5rem;
+  }
 
-/* ==========================
-   CONTACT PAGE
-========================== */
-.contact {
-  padding: 60px 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  margin: 40px auto;
-  max-width: 900px;
-  text-align: center;
-}
+  .product-card, .category-card, .cert-card {
+    width: 100%;
+    flex: 1 1 100%;
+  }
 
-.contact h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #b83227;
-  font-family: Georgia, serif;
-}
+  .hero {
+    height: 30vh;
+  }
 
-.contact p {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-}
+  .category-banner {
+    height: 25vh;
+  }
 
-.contact-form {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  .social-icon {
+    width: 30px;
+    height: 30px;
+  }
 }
-
-.contact-form input,
-.contact-form textarea {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.contact-form button {
-  background: #e53935;
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.contact-form button:hover {
-  background: #b83227;
-}
-
-/* ==========================
-   MAP SECTION
-========================== */
-.map {
-  max-width: 1200px;
-  margin: 40px auto;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.map h2 {
-  text-align: center;
-  padding: 15px;
-  background: #800000;
-  color: #ffd700;

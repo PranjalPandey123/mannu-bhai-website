@@ -23,47 +23,68 @@ window.addEventListener("load", () => {
   // Load header and footer, then initialize slider AFTER header is ready
   loadComponent("header", "components/header.html", initSlider);
   loadComponent("footer", "components/footer.html");
-
-  // ==========================
-  // HERO SLIDER FUNCTION
-  // ==========================
-  function initSlider() {
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".hero-slide");
-    const prev = document.querySelector(".prev");
-    const next = document.querySelector(".next");
-
-    if (slides.length > 0) {
-      // Show given slide
-      function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle("", i === index);
-        });
-      }
-
-      // Next & Prev click
-      if (next) {
-        next.addEventListener("click", () => {
-          currentSlide = (currentSlide + 1) % slides.length;
-          showSlide(currentSlide);
-        });
-      }
-
-      if (prev) {
-        prev.addEventListener("click", () => {
-          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-          showSlide(currentSlide);
-        });
-      }
-
-      // Auto-slide every 5s
-      setInterval(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-      }, 5000);
-
-      // Show first slide initially
-      showSlide(currentSlide);
-    }
-  }
 });
+
+// ==========================
+// HERO SLIDER FUNCTION
+// ==========================
+function initSlider() {
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".hero-slide");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
+  let autoSlideInterval;
+
+  if (slides.length === 0) return;
+
+  // Show slide by index with fade effect
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add("");
+      } else {
+        slide.classList.remove("");
+      }
+    });
+  }
+
+  // Next & Prev click handlers
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+    resetAutoSlide();
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+    resetAutoSlide();
+  }
+
+  if (next) next.addEventListener("click", nextSlide);
+  if (prev) prev.addEventListener("click", prevSlide);
+
+  // Auto-slide every 5s
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 5000);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+
+  // Pause on hover
+  const heroSection = document.querySelector(".hero");
+  if (heroSection) {
+    heroSection.addEventListener("mouseenter", () => clearInterval(autoSlideInterval));
+    heroSection.addEventListener("mouseleave", startAutoSlide);
+  }
+
+  // Show first slide initially
+  showSlide(currentSlide);
+  startAutoSlide();
+}

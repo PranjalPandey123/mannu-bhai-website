@@ -6,6 +6,59 @@
   <title>Mannu Bhai Namkeens - Home</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <style>
+    /* ==========================
+       CERTIFICATION MODAL STYLES
+    ========================== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      animation: zoomIn 0.3s;
+    }
+
+    #caption {
+      margin: 15px auto;
+      text-align: center;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close:hover {
+      color: #f9a825;
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.7);}
+      to {transform: scale(1);}
+    }
+  </style>
 </head>
 <body>
 
@@ -66,8 +119,8 @@
     <h4>Fast Delivery</h4>
   </div>
   <div class="feature-item">
-    <img src="assets/icons/export-certified.jpg" alt="Export Certified">
-    <h4>Export Certified</h4>
+    <img src="assets/icons/100%25%20vegetarian.jpg" alt="100% Vegetarian">
+    <h4>100% Vegetarian</h4>
   </div>
 </section>
 
@@ -76,28 +129,28 @@
   <h2>Our Range</h2>
   <div class="category-cards">
     <a href="sweets.html" class="category-card">
-      <img src="assets/categories/sweets-banner.png" alt="Sweets">
+      <img src="assets/categories/Petha_banner_og.png" alt="Sweets">
       <h3>Sweets</h3>
     </a>
     <a href="snacks.html" class="category-card">
-      <img src="assets/categories/mathi-banner.png" alt="Snacks">
+      <img src="assets/categories/Mathi_2_banner.png" alt="Snacks">
       <h3>Snacks</h3>
     </a>
     <a href="namkeen.html" class="category-card">
-      <img src="assets/categories/namkeen-banner.png" alt="Namkeen">
+      <img src="assets/categories/Namkeen_banner_og.png" alt="Namkeen">
       <h3>Namkeen</h3>
     </a>
   </div>
 </section>
 
 <!-- 🔹 Legacy Section -->
-<section class="legacy-section" style="background: linear-gradient(135deg, #800000, #a83232); color: #fff; padding: 60px 20px;">
-  <div class="legacy-container" style="display: flex; flex-wrap: wrap; align-items: center; max-width: 1200px; margin: auto; gap: 20px;">
-    <div class="legacy-image" style="flex: 1 1 40%; text-align: center;">
-      <img src="assets/legacy.jpg" alt="Mannu Bhai Namkeens Legacy" style="max-width: 100%; border-radius: 10px;">
+<section class="legacy-section">
+  <div class="legacy-container">
+    <div class="legacy-image">
+      <img src="assets/legacy.jpg" alt="Mannu Bhai Namkeens Legacy">
     </div>
-    <div class="legacy-content" style="flex: 1 1 55%;">
-      <h2 style="font-size: 2rem; margin-bottom: 20px;">Our Legacy of Taste & Tradition</h2>
+    <div class="legacy-content">
+      <h2>Our Legacy of Taste & Tradition</h2>
       <p>
         Mannu Bhai Namkeens was founded in 1990 in Panchkula by Shri Hariram Prajapat,
         with a simple yet powerful vision — to share authentic Indian snacks made
@@ -120,6 +173,35 @@
   </div>
 </section>
 
+<!-- 🔹 Certifications Section -->
+<section class="certifications">
+  <h2>Certifications</h2>
+  <div class="certifications-container">
+    <div class="cert-card">
+      <img src="assets/certifications/fssai.jpg" alt="FSSAI Certified">
+      <h4>FSSAI Certified</h4>
+      <p>Ensuring the highest standard of food safety and hygiene.</p>
+    </div>
+    <div class="cert-card">
+      <img src="assets/certifications/Udyam.jpg" alt="MSME Certification">
+      <h4>MSME Certification</h4>
+      <p>For Government assistance and support.</p>
+    </div>
+    <div class="cert-card">
+      <img src="assets/certifications/Zed.jpg" alt="Zed Certification">
+      <h4>Zed Certification</h4>
+      <p>Guaranteeing safe and hygienic food processing practices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 Certification Image Modal -->
+<div id="certModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+  <div id="caption"></div>
+</div>
+
 <!-- 🔹 About Section -->
 <section id="about" class="about">
   <div class="about-content">
@@ -138,6 +220,34 @@
 
 <!-- 🔹 Footer (loaded dynamically) -->
 <div id="footer"></div>
+
+<script>
+  // Certification modal functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('certModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('caption');
+    const closeBtn = document.getElementsByClassName('close')[0];
+
+    document.querySelectorAll('.cert-card img').forEach(img => {
+      img.addEventListener('click', function() {
+        modal.style.display = 'block';
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+      });
+    });
+
+    closeBtn.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    modal.onclick = function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
